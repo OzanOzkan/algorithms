@@ -1,3 +1,6 @@
+// Linked List
+// Ozan Ozkan - 31/03/2017
+
 #pragma once
 
 template <class T>
@@ -92,5 +95,6 @@ public:
 
 private:
 	Node<T>* m_head;
+
 	int m_length;
 };
