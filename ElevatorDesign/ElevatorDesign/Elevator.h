@@ -22,6 +22,7 @@ public:
 	int getCurrentFloor() { return m_currentFloor; }
 
 	void setID(int newID) { m_elevatorID = newID; }
+	int getID() { return m_elevatorID; }
 
 	void goUp();
 	void goDown();

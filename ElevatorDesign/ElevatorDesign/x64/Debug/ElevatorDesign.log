@@ -1,0 +1,6 @@
+﻿  ElevatorController.cpp
+c:\users\ozano\onedrive\documents\visual studio 2015\projects\elevatordesign\elevatordesign\elevatorcontroller.cpp(17): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+c:\users\ozano\onedrive\documents\visual studio 2015\projects\elevatordesign\elevatordesign\elevatorcontroller.cpp(48): warning C4715: 'ElevatorController::sendRequest': not all control paths return a value
+c:\users\ozano\onedrive\documents\visual studio 2015\projects\elevatordesign\elevatordesign\elevatorcontroller.cpp(59): warning C4715: 'ElevatorController::getElevatorCurrentFloor': not all control paths return a value
+  ElevatorDesign.vcxproj -> C:\Users\ozano\onedrive\documents\visual studio 2015\Projects\ElevatorDesign\x64\Debug\ElevatorDesign.exe
+  ElevatorDesign.vcxproj -> C:\Users\ozano\onedrive\documents\visual studio 2015\Projects\ElevatorDesign\x64\Debug\ElevatorDesign.pdb (Full PDB)

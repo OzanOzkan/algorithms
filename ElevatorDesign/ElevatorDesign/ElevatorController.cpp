@@ -18,21 +18,41 @@ void ElevatorController::addElevator()
 	m_elevators.insert(newElevator);
 }
 
-void ElevatorController::sendRequest(ElevatorRequest newRequest)
+bool ElevatorController::sendRequest(ElevatorRequest newRequest)
 {
 	// TODO: Check request and apply to a specific elevator.
+	if (newRequest.destinationFloor >= MIN_FLOOR_NUM && newRequest.destinationFloor <= MAX_FLOOR_NUM)
+	{
+		for (Elevator* currentElevator : m_elevators)
+		{
+			if (currentElevator->getElevatorState() == Elevator::ElevatorState::ELEV_STATE_READY)
+			{
+				while (currentElevator->getCurrentFloor() != newRequest.destinationFloor)
+				{
+					if (currentElevator->getCurrentFloor() > newRequest.destinationFloor)
+						currentElevator->goDown();
+					else
+						currentElevator->goUp();
+				}
+				return true;
+			}
+			else
+				return false;
+		}
+	}
+	else
+	{
+		return false;
+	}
+}
 
+int ElevatorController::getElevatorCurrentFloor(int elevatorID)
+{
 	for (Elevator* currentElevator : m_elevators)
 	{
-		if (currentElevator->getElevatorState() == Elevator::ElevatorState::ELEV_STATE_READY) 
-		{
-			while (currentElevator->getCurrentFloor() != newRequest.destinationFloor)
-			{
-				if (currentElevator->getCurrentFloor() > newRequest.destinationFloor)
-					currentElevator->goDown();
-				else
-					currentElevator->goUp();
-			}
-		}
+		if (currentElevator->getID() != elevatorID)
+			continue;
+		else
+			return currentElevator->getCurrentFloor();
 	}
 }
