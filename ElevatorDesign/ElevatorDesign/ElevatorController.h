@@ -1,6 +1,8 @@
 #pragma once
 #include "Elevator.h"
+#include "FloorButton.h"
 #include <set>
+#include <vector>
 
 const int MAX_FLOOR_NUM = 16;
 const int MIN_FLOOR_NUM = -1;
@@ -30,7 +32,12 @@ public:
 	int getElevatorCurrentFloor(int elevatorID);
 
 private:
+	// Used 'typedef' in following declarations for learning purposes.
 	// TODO: Perhaps I should use 'map' instead of 'set' in order to get O1 access.
-	std::set<Elevator*> m_elevators;
+	typedef std::set<Elevator*> Elevators;
+	Elevators m_elevators;
+
+	typedef std::vector<FloorButton*> FloorButtons;
+	FloorButtons m_floorButtons;
 };
 

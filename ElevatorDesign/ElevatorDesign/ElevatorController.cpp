@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "ElevatorController.h"
 
+#include <iostream>
+
 
 ElevatorController::ElevatorController()
 {
@@ -15,7 +17,10 @@ void ElevatorController::addElevator()
 {
 	Elevator* newElevator = new Elevator();
 	newElevator->setID(m_elevators.size());
+	newElevator->initButtons(MAX_FLOOR_NUM);
 	m_elevators.insert(newElevator);
+
+	std::cout << "New elevator created with " << newElevator->getButtonCount() << " buttons." << std::endl;
 }
 
 bool ElevatorController::sendRequest(ElevatorRequest newRequest)

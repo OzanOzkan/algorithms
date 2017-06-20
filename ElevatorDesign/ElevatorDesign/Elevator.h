@@ -1,4 +1,7 @@
 #pragma once
+#include "ElevatorButton.h"
+#include <vector>
+
 class Elevator
 {
 public:
@@ -29,9 +32,16 @@ public:
 	void openDoor();
 	void closeDoor();
 
+	bool initButtons(int buttonCount);
+	int getButtonCount() { return m_elevatorButtons.size(); }
+
 private:
 	int m_elevatorID;
 	ElevatorState m_elevatorState;
 	int m_currentFloor;
+
+	// Used 'typedef' for learning purposes.
+	typedef std::vector<ElevatorButton*> ElevatorButtons;
+	ElevatorButtons m_elevatorButtons;
 };
 
