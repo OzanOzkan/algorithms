@@ -1,86 +1,45 @@
 #pragma once
 
-// Binary Tree
-// Ozan Ozkan - 23/04/2017
+// Binary Tree 
+// Ozan Ozkan - 03/07/2017
 
 #include <iostream>
 
-class MyBinaryTree {
-protected:
-	struct Node
-	{
-	public:
-		int value;
-		Node* leftNode;
-		Node* rightNode;
-
-		Node(int value)
-			: leftNode(nullptr)
-			, rightNode(nullptr)
-		{
-			this->value = value;
-		};
-	};
-
+struct Node
+{
 public:
-	Node* rootNode;
+	Node() : m_value(-1), m_leftNode(nullptr), m_rightNode(nullptr) {}
+	Node(int value): m_value(value), m_leftNode(nullptr), m_rightNode(nullptr) {}
 
-public:
-	MyBinaryTree()
-		: rootNode(nullptr)
-	{};
+	void setLeftNode(Node* node) { m_leftNode = node; }
+	void setRightNode(Node* node) { m_rightNode = node; }
+	Node* getRightNode() { return m_rightNode; }
+	Node* getLeftNode() { return m_leftNode; }
 
-	void addNode(int value)
-	{
-		Node* newNode = new Node(value);
+	int getValue() { return m_value; }
+	void setValue(int value) { m_value = value; }
 
-		if (rootNode == nullptr)
-		{
-			rootNode = newNode;
-		}
-		else
-		{
-			Node* focusNode = rootNode;
-			Node* parentNode;
-			
-			while (true)
-			{
-				parentNode = focusNode;
-
-				if (value < focusNode->value)
-				{
-					focusNode = focusNode->leftNode;
-
-					if (focusNode == nullptr)
-					{
-						parentNode->leftNode = newNode;
-						return;
-					}
-				}
-				else
-				{
-					focusNode = focusNode->rightNode;
-
-					if (focusNode == nullptr)
-					{
-						parentNode->rightNode = newNode;
-						return;
-					}
-				}
-			}
-		}
-	};
-
-	void inOrderTraverseTree(Node* focusNode)
-	{
-		if (focusNode != nullptr)
-		{
-			inOrderTraverseTree(focusNode->leftNode);
-
-			std::cout << focusNode->value << std::endl;
-
-			inOrderTraverseTree(focusNode->rightNode);
-		}
-	};
-
+private:
+	int m_value;
+	Node* m_leftNode;
+	Node* m_rightNode;
 };
+
+class BinaryTree
+{
+public:
+	BinaryTree();
+	~BinaryTree();
+
+	void Insert(int value);
+	Node* Search(int value);
+	void Print();
+
+private:
+	void Insert(int value, Node* leaf);
+	void Print(Node* leaf);
+	Node* Search(int value, Node* leaf);
+
+	Node* m_rootNode;
+};
+
