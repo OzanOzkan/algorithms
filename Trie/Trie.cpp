@@ -82,7 +82,7 @@ int Trie::numberOfWordsStartsWith(string word)
 		if (currentNode = currentNode->getLink(c))
 			continue;
 		else
-			return -1;
+			return 0;
 	}
 
 	return countNumberOfWordsStartsWith(currentNode);
