@@ -19,6 +19,7 @@ public:
 	int getLinkCount();
 	bool isEndOfWord();
 	void setEndOfWord(bool value);
+	map<char, TrieNode*>& getLinkList();
 
 private:
 	map<char, TrieNode*> m_CharLinks;
@@ -35,9 +36,11 @@ public:
 	bool isWordExists(string word);
 	bool isPrefixExists(string prefix);
 	bool deleteWord(string word);
+	int numberOfWordsStartsWith(string word);
 
 private:
 	bool deleteWord(string word, TrieNode* node, int index);
+	int countNumberOfWordsStartsWith(TrieNode* currentNode);
 
 private:
 	TrieNode* m_rootNode;

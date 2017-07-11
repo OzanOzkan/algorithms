@@ -73,6 +73,21 @@ bool Trie::deleteWord(string word)
 	return true;
 }
 
+int Trie::numberOfWordsStartsWith(string word)
+{
+	TrieNode* currentNode = m_rootNode;
+
+	for (char c : word)
+	{
+		if (currentNode = currentNode->getLink(c))
+			continue;
+		else
+			return -1;
+	}
+
+	return countNumberOfWordsStartsWith(currentNode);
+}
+
 bool Trie::deleteWord(string word, TrieNode * node, int index)
 {
 	bool check = false;
@@ -107,6 +122,25 @@ bool Trie::deleteWord(string word, TrieNode * node, int index)
 	}
 
 	return false;
+}
+
+int Trie::countNumberOfWordsStartsWith(TrieNode * currentNode)
+{
+	int totalValue = 0;
+
+	if (currentNode->getLinkCount() > 0)
+	{
+		for (map<char, TrieNode*>::iterator itr = currentNode->getLinkList().begin();
+			itr != currentNode->getLinkList().end(); ++itr)
+		{
+			totalValue += countNumberOfWordsStartsWith(itr->second);
+		}
+	}
+
+	if (currentNode->isEndOfWord())
+		totalValue++;
+
+	return totalValue;
 }
 
 void TrieNode::destroyNode()
@@ -153,4 +187,9 @@ bool TrieNode::isEndOfWord()
 void TrieNode::setEndOfWord(bool value)
 {
 	m_endOfWord = value;
+}
+
+map<char, TrieNode*>& TrieNode::getLinkList()
+{
+	return m_CharLinks;
 }
